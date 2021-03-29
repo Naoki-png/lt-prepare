@@ -14,6 +14,9 @@ public class VisibilityDemonstration {
         new Producer().start();
     }
 
+    /**
+     * sCountに変更があれば出力する
+     */
     static class Consumer extends Thread {
         @Override
         public void run() {
@@ -31,6 +34,9 @@ public class VisibilityDemonstration {
         }
     }
 
+    /**
+     * sCountを１秒に一回インクリメントする
+     */
     static class Producer extends Thread {
         @Override
         public void run() {
@@ -39,6 +45,7 @@ public class VisibilityDemonstration {
                 localValue++;
                 System.out.println("Producer: incrementing count to " + localValue);
                 sCount = localValue;
+                //１秒待つことでProducerの後に必ずConsumerが実行される
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
