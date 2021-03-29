@@ -5,6 +5,8 @@ import com.techyourchance.multithreading.demonstrations.visibility.VisibilityDem
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static java.lang.Thread.sleep;
+
 public class AtomicityDemonstration {
 
     private static final AtomicityDemonstration instatnce = new AtomicityDemonstration();
@@ -22,6 +24,11 @@ public class AtomicityDemonstration {
             startCountThread();
         }
 
+        try {
+            sleep(1000);
+        } catch (Exception e) {
+
+        }
         System.out.println("Total count is... " + mCount.get());
     }
 
