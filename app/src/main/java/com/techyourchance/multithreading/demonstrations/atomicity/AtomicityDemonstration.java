@@ -25,7 +25,8 @@ public class AtomicityDemonstration {
         }
 
         try {
-            sleep(1000);
+            //全てのスレッドが終わるのをまつ。
+            sleep(2000);
         } catch (Exception e) {
 
         }
@@ -37,6 +38,8 @@ public class AtomicityDemonstration {
             @Override
             public void run() {
                 for (int i = 0; i < COUNT_UP_TO; i++) {
+//                    int j = mCount;
+//                    mCount = j + 1;
                     mCount++;
                 }
             }
