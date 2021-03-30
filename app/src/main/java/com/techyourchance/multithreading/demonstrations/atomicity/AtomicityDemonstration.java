@@ -12,13 +12,13 @@ public class AtomicityDemonstration {
     private static final AtomicityDemonstration instatnce = new AtomicityDemonstration();
     private static final int COUNT_UP_TO = 1000;
     private static final int NUM_OF_COUNTER_THREADS = 100;
-    private volatile int mCount;
+    private volatile AtomicInteger mCount = new AtomicInteger(0);
     public static void main(String[] args) {
         instatnce.startCount();
     }
 
     private void startCount() {
-        mCount = 0;
+        mCount.set(0);
 
         for (int i = 0; i < NUM_OF_COUNTER_THREADS; i++) {
             startCountThread();
@@ -30,7 +30,7 @@ public class AtomicityDemonstration {
         } catch (Exception e) {
 
         }
-        System.out.println("Total count is... " + mCount);
+        System.out.println("Total count is... " + mCount.get());
     }
 
     private void startCountThread() {
@@ -40,7 +40,7 @@ public class AtomicityDemonstration {
                 for (int i = 0; i < COUNT_UP_TO; i++) {
 //                    int j = mCount;
 //                    mCount = j + 1;
-                    mCount++;
+                    mCount.incrementAndGet();
                 }
             }
         }).start();
